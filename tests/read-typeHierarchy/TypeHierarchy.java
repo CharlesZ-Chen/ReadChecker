@@ -7,7 +7,7 @@ import read.qual.UnknownSafety;
 import read.qual.UnsafeByte;
 import read.qual.UnsafeChar;
 
-// javac-dev -processorpath ./bin:/Users/charleszhuochen/Programming/UWaterloo/jsr308/checker-framework/checker/dist/checker.jar -processor read.ReadChecker -cp ./bin tests/read/TypeHierarchy.java
+// javac-dev -processorpath ./bin:/Users/charleszhuochen/Programming/UWaterloo/jsr308/checker-framework/checker/dist/checker.jar -processor read.ReadChecker -cp ./bin tests/read-typeHierarchy/TypeHierarchy.java
 
 public class TypeHierarchy {
 
@@ -32,6 +32,10 @@ public class TypeHierarchy {
         int k = produceReadByte();
 
         consumeReadByte(k); // OK, but why?
+        
+        k = - 1;
+        
+        consumeReadByte(k);
     }
     
     
