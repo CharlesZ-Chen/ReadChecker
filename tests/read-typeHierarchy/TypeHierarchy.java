@@ -26,17 +26,20 @@ public class TypeHierarchy {
 
         int j = 1;
 
-      //:: error: (argument.type.incompatible)
+        //:: error: (argument.type.incompatible)
         consumeReadByte(j); // ERROR
 
         int k = produceReadByte();
 
-        consumeReadByte(k); // OK, but why?
-        
-        k = - 1;
-        
+        consumeReadByte(k); // OK
+
+        k = - 1; // -1 is @SafetyBottom
+
         consumeReadByte(k);
+
+        @UnknownSafety int p = 9;
+
+        k = p; // This is also Ok, why? Because Declaritive type is always top
     }
-    
-    
+
 }
