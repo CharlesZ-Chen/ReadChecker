@@ -3,3 +3,6 @@ language: java
 script: ./.travis-build.sh
 
 sudo: false
+
+jdk:
+  - oraclejdk8
