@@ -73,10 +73,6 @@
             <isset property="debugger.on"/>
         </condition>
 
-        <condition property="use.hacks.str" value="-Duse.hacks=true">
-            <isset property="use.hacks"/>
-        </condition>
-
         <!-- Copied from -run-tests target -->
         <mkdir dir="${build.reports}"/>
 
