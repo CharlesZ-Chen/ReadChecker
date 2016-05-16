@@ -1,12 +1,12 @@
 *~
 
-#Eclipse output
+# Eclipse output
 bin/
 
-#Eclipse personal settings
+# Eclipse personal settings
 .settings/
 
-#ant output
+# ant output
 tests/build
 tests/deps
 build-deps/
