@@ -1,0 +1,50 @@
+<project name="ReadChecker" basedir="." default="build-checker">
+    <property name="checker-framework" value="${basedir}/../checker-framework"/>
+    <property name="jsr308-langtools" value="${basedir}/../jsr308-langtools"/>
+
+    <property name="checker.bin" value="${basedir}/bin"/>
+    <property name="checker.src" value="${basedir}/src"/>
+    <property name="build.deps" value="${basedir}/build-deps"/>
+    <!--   <symlink link="${dir.top}/foo" resource="${dir.top}/subdir/bar.foo"/> -->
+
+    <target name="prep">
+        <mkdir dir="${checker.bin}"/>
+        <mkdir dir="${build.deps}"/>
+
+        <symlink link="${build.deps}/framework.jar" resource="${checker-framework}/framework/dist/framework.jar" overwrite="true"/>
+        <symlink link="${build.deps}/javac.jar" resource="${jsr308-langtools}/dist/lib/javac.jar" overwrite="true"/>
+    </target>
+
+    <target name="build-checker" depends="prep">
+        <pathconvert pathsep=":" property="build.classpath">
+        <path>
+            <fileset dir="${build.deps}">
+                <include name="*.jar"/>
+            </fileset>
+        </path>
+        </pathconvert>
+
+        <pathconvert pathsep=" " property="src.checker">
+        <path>
+            <fileset dir="${checker.src}">
+                <include name="**/*.java"/>
+            </fileset>
+        </path>
+    </pathconvert>
+
+        <java fork="true"
+              failonerror="true"
+              classpath="${build.classpath}"
+              classname="com.sun.tools.javac.Main">
+            <jvmarg line="-Xbootclasspath/p:${javac.lib}"/>
+            <arg value="-g"/>
+            <!-- To not get a warning about bootstrap classpath -->
+            <arg value="-Xlint:-options"/>
+            <arg line="-sourcepath ${checker.src}"/>
+            <arg line="-d ${checker.bin}"/>
+            <arg line="${src.checker}"/>
+        </java>
+    </target>
+    
+
+</project>
