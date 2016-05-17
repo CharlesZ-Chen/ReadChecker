@@ -14,7 +14,7 @@ public class ReadTest extends CheckerFrameworkTest {
 
     @Parameters
     public static String[] getTestDirs() {
-        return new String[]{"read-typeHierarchy"};
+        return new String[]{"read-typeHierarchy", "NOC-examples"};
     }
 
 
