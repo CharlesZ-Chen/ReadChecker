@@ -9,7 +9,6 @@
     <property name="tests.build" value="${tests}/build"/>
     <property name="build.reports" value="${tests.build}/reports"/>
     <property name="javac.lib" value="${tests.deps}/javac.jar"/>
-<!--     <property name="javac.lib" value="${tests.deps}/javac.jar" /> -->
 
     <!-- Defaults, used if the Ant invocation does not set a value. -->
     <property name="halt.on.test.error" value="true" />

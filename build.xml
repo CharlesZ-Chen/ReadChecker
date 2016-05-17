@@ -8,7 +8,6 @@
 
     <!-- if using jdk.astub, un-comment this property, and re-configure the right place of your jdk.astub-->
     <property name="jdk.astub" value="${checker.src}/read/jdk.astub"/>
-    <!--   <symlink link="${dir.top}/foo" resource="${dir.top}/subdir/bar.foo"/> -->
 
     <target name="prep">
         <mkdir dir="${checker.bin}"/>
@@ -51,6 +50,5 @@
             <arg line="${src.checker}"/>
         </java>
     </target>
-    
 
 </project>
