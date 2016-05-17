@@ -24,16 +24,15 @@ public class TypeHierarchy {
 
         consumeReadByte(produceReadByte()); // OK
 
-        int j = 1;
+        long j = 1L; // 1L is is @UnkownSafetyLiterals
 
-        //:: error: (argument.type.incompatible)
-        consumeReadByte(j); // ERROR
+        consumeReadByte( (int) j); // OK
 
         int k = produceReadByte();
 
         consumeReadByte(k); // OK
 
-        k = - 1; // -1 is @SafetyBottom
+        k = - 1; // -1 is @UnkownSafetyLiterals
 
         consumeReadByte(k);
 
