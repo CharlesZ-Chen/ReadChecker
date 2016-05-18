@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
+import read.qual.UnsafeChar;
+import read.qual.UnsafeByte;
+
 public class NormalCasting {
     @SuppressWarnings("unused")
     public void method(int foo) {
@@ -18,26 +21,18 @@ public class NormalCasting {
     }
 
     @SuppressWarnings("unused")
-    public void readMethod() throws IOException {
-        Reader byteIn = new FileReader("afile");
-        int byteInbuff = byteIn.read();
-        byteIn.close();
+    public void readCharMethod(@UnsafeChar int inbuff, int unkownInt) throws IOException {
+        char unknownSafetyChar_1 = (char) (inbuff + 1); // Should cast up to UnknownSafety, OK
+        char unknownSafetyChar_2 = (char) (inbuff + inbuff); // Should cast up to UnknownSafety, OK
+        char unknownSafetyChar_3 = (char) (inbuff + unkownInt); // Should cast up to UnknownSafety, OK
+        char unknownSafetyChar_4 = (char) (inbuff++); // Should cast up to UnknownSafety, OK
+    }
 
-        InputStream charIn = new FileInputStream("afile");
-        int charInbuff = charIn.read();
-        charIn.close();
-
-        int bar = byteInbuff++;
-        byte barByte = (byte) bar; // OK
-        char barChar = (char) bar; // OK
-
-        bar = byteInbuff + 1;
-        barByte = (byte) bar; // OK
-        barChar = (char) bar; // OK
-
-        int foo = charInbuff++;
-        byte fooByte = (byte) foo; // OK
-        char fooChar = (char) foo; // OK
-
+    @SuppressWarnings("unused")
+    public void readByteMethod(@UnsafeByte int inbuff, int unkownInt) throws IOException {
+        byte unknownSafetyChar_1 = (byte) (inbuff + 1); // Should cast up to UnknownSafety, OK
+        byte unknownSafetyChar_2 = (byte) (inbuff + inbuff); // Should cast up to UnknownSafety, OK
+        byte unknownSafetyChar_3 = (byte) (inbuff + unkownInt); // Should cast up to UnknownSafety, OK
+        byte unknownSafetyChar_4 = (byte) (inbuff++); // Should cast up to UnknownSafety, OK
     }
 }

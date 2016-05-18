@@ -35,10 +35,17 @@ public class ReadVisitor extends BaseTypeVisitor<ReadAnnotatedTypeFactory> {
     protected void checkTypecastSafety(TypeCastTree node, Void p) {
         AnnotatedTypeMirror castType = atypeFactory.getAnnotatedType(node);
         AnnotatedTypeMirror exprType = atypeFactory.getAnnotatedType(node.getExpression());
+
         if ((castType.getUnderlyingType().getKind() == TypeKind.BYTE && castType.hasAnnotation(UNSAFE_BYTE)) ||
                 (castType.getUnderlyingType().getKind() == TypeKind.CHAR && castType.hasAnnotation(UNSAFE_CHAR))) {
 //            checker.report(Result.warning("cast.unsafe", exprType, castType), node);
             checker.report(Result.failure("cast.unsafe", exprType, castType), node);
+        }
+
+        if ((castType.getUnderlyingType().getKind() == TypeKind.BYTE && castType.hasAnnotation(UNSAFE_CHAR))||
+                (castType.getUnderlyingType().getKind() == TypeKind.CHAR && castType.hasAnnotation(UNSAFE_BYTE))) {
+            checker.report(Result.warning("cast.unsafe", exprType, castType), node);
+//            checker.report(Result.failure("cast.unsafe", exprType, castType), node);
         }
 
         super.checkTypecastSafety(node, p);
