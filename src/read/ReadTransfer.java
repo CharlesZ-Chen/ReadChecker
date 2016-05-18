@@ -10,13 +10,11 @@ import org.checkerframework.dataflow.analysis.TransferResult;
 import org.checkerframework.dataflow.analysis.FlowExpressions.Receiver;
 import org.checkerframework.dataflow.cfg.node.IntegerLiteralNode;
 import org.checkerframework.dataflow.cfg.node.Node;
-import org.checkerframework.framework.flow.CFAbstractStore;
 import org.checkerframework.framework.flow.CFAbstractTransfer;
 import org.checkerframework.framework.flow.CFStore;
 import org.checkerframework.framework.flow.CFValue;
 import org.checkerframework.javacutil.AnnotationUtils;
 
-import read.qual.SafetyBottom;
 import read.qual.UnsafeByte;
 import read.qual.UnsafeChar;
 import read.qual.SafeByte;
@@ -47,6 +45,7 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
             boolean notEqualTo) {
         res = super.strengthenAnnotationOfEqualTo(res, firstNode, secondNode,
                 firstValue, secondValue, notEqualTo);
+
         if (firstNode instanceof IntegerLiteralNode &&
                 ((IntegerLiteralNode) firstNode).getValue() == -1) {
             boolean isReadByteOrChar = false;
@@ -61,11 +60,11 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
             } else {
                 isReadByteOrChar = false;
             }
+
             if (!isReadByteOrChar) {
                 return res; //this Equal To doesn't check a read byte or char, thus do nothing.
             }
-//            System.out.println("firstNode is " + firstNode);
-//            System.out.println("notEqualTo is " + notEqualTo);
+
             CFStore thenStore = res.getThenStore();
             CFStore elseStore = res.getElseStore();
 
