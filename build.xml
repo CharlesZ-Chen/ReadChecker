@@ -6,8 +6,9 @@
     <property name="checker.src" value="${basedir}/src"/>
     <property name="build.deps" value="${basedir}/build-deps"/>
 
-    <!-- if using jdk.astub, un-comment this property, and re-configure the right place of your jdk.astub-->
+    <!-- if using jdk.astub, un-comment below properties, and re-configure the right place of your jdk.astub-->
     <property name="jdk.astub" value="${checker.src}/read/jdk.astub"/>
+    <property name="jdk.astub.bin.dir" value="${checker.bin}/read"/>
 
     <target name="prep">
         <mkdir dir="${checker.bin}"/>
@@ -16,8 +17,8 @@
         <symlink link="${build.deps}/framework.jar" resource="${checker-framework}/framework/dist/framework.jar" overwrite="true"/>
         <symlink link="${build.deps}/javac.jar" resource="${jsr308-langtools}/dist/lib/javac.jar" overwrite="true"/>
 
-        <!-- using jdk.astub specific, need to re-configure the right place of yoru jdk.astub in bin dir-->
-        <copy file="${jdk.astub}" todir="${checker.bin}/read"/>
+        <!-- using jdk.astub specific, need to re-configure the right place of yoru jdk.astub.bin.dir-->
+        <copy file="${jdk.astub}" todir="${jdk.astub.bin.dir}"/>
     </target>
 
     <target name="build-checker" depends="prep">
