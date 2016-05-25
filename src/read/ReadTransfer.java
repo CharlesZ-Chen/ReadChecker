@@ -49,14 +49,14 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
         if (firstNode instanceof IntegerLiteralNode &&
                 ((IntegerLiteralNode) firstNode).getValue() == -1) {
             boolean isReadByteOrChar = false;
-            AnnotationMirror SAFE_ANNOTAION = null;
+            AnnotationMirror SAFE_ANNOTATION = null;
 
             if (secondValue.getType().hasAnnotation(UNSAFE_BYTE)) {
                 isReadByteOrChar = true;
-                SAFE_ANNOTAION = SAFE_BYTE;
+                SAFE_ANNOTATION = SAFE_BYTE;
             } else if (secondValue.getType().hasAnnotation(UNSAFE_CHAR)) {
                 isReadByteOrChar = true;
-                SAFE_ANNOTAION = SAFE_CHAR;
+                SAFE_ANNOTATION = SAFE_CHAR;
             } else {
                 isReadByteOrChar = false;
             }
@@ -64,6 +64,8 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
             if (!isReadByteOrChar) {
                 return res; //this Equal To doesn't check a read byte or char, thus do nothing.
             }
+
+            assert SAFE_ANNOTATION != null;
 
             CFStore thenStore = res.getThenStore();
             CFStore elseStore = res.getElseStore();
@@ -78,9 +80,9 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
                     elseStore = elseStore == null ? res.getElseStore()
                             : elseStore;
                     if (notEqualTo) {
-                        thenStore.insertValue(secondInternal, SAFE_ANNOTAION);
+                        thenStore.insertValue(secondInternal, SAFE_ANNOTATION);
                     } else {
-                        elseStore.insertValue(secondInternal, SAFE_ANNOTAION);
+                        elseStore.insertValue(secondInternal, SAFE_ANNOTATION);
                     }
                 }
             }
