@@ -11,3 +11,8 @@ tests/build
 tests/deps
 build-deps/
 
+# Analysis
+Analysis/
+FooProject/
+# do-like-javac output
+dljc-out/
