@@ -44,8 +44,8 @@ public class ReadVisitor extends BaseTypeVisitor<ReadAnnotatedTypeFactory> {
 
         if ((castType.getUnderlyingType().getKind() == TypeKind.BYTE && castType.hasAnnotation(UNSAFE_CHAR))||
                 (castType.getUnderlyingType().getKind() == TypeKind.CHAR && castType.hasAnnotation(UNSAFE_BYTE))) {
-            checker.report(Result.warning("cast.unsafe", exprType, castType), node);
-//            checker.report(Result.failure("cast.unsafe", exprType, castType), node);
+//            checker.report(Result.warning("cast.unsafe", exprType, castType), node);
+            checker.report(Result.failure("cast.unsafe", exprType, castType), node);
         }
 
         super.checkTypecastSafety(node, p);

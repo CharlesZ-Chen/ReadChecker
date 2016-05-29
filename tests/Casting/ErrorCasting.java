@@ -23,13 +23,13 @@ public class ErrorCasting {
         int foo = charBuff = charBuff;
         //:: error: (cast.unsafe)
         char unSafeChar_3 = (char) foo;
-        //:: warning: (cast.unsafe)
+        //:: error: (cast.unsafe)
         byte unknownSafetyByte_3 = (byte) foo;
 
         int foo_2 = byteBuff = byteBuff;
         //:: error: (cast.unsafe)
         byte unknownSafetyByte_4 = (byte) foo_2;
-        //:: warning: (cast.unsafe)
+        //:: error: (cast.unsafe)
         char unSafeChar_4 = (char) foo_2;
     }
 
