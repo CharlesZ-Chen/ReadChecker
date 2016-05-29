@@ -74,9 +74,9 @@ public class ReadAnnotatedTypeFactory extends GenericAnnotatedTypeFactory<CFValu
     @Override
     protected TreeAnnotator createTreeAnnotator() {
         return new ListTreeAnnotator(
-                new ReadTreeAnnotator(this),
                 new PropagationTreeAnnotator(this),
-                new ImplicitsTreeAnnotator(this)
+                new ImplicitsTreeAnnotator(this),
+                new ReadTreeAnnotator(this)
                 );
     }
 }
