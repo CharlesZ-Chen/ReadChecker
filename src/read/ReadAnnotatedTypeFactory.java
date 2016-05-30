@@ -5,6 +5,9 @@ import java.util.List;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.VariableElement;
 
+import com.sun.source.tree.BinaryTree;
+import com.sun.source.tree.UnaryTree;
+
 import org.checkerframework.common.basetype.BaseTypeChecker;
 import org.checkerframework.framework.flow.CFStore;
 import org.checkerframework.framework.flow.CFValue;
@@ -17,9 +20,6 @@ import org.checkerframework.framework.type.treeannotator.PropagationTreeAnnotato
 import org.checkerframework.framework.type.treeannotator.TreeAnnotator;
 import org.checkerframework.javacutil.AnnotationUtils;
 import org.checkerframework.javacutil.Pair;
-
-import com.sun.source.tree.BinaryTree;
-import com.sun.source.tree.UnaryTree;
 
 import read.qual.SafeByte;
 import read.qual.SafeChar;

@@ -3,15 +3,15 @@ package read;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.type.TypeKind;
 
+import com.sun.source.tree.TypeCastTree;
+
 import org.checkerframework.common.basetype.BaseTypeChecker;
 import org.checkerframework.common.basetype.BaseTypeVisitor;
 import org.checkerframework.framework.source.Result;
 import org.checkerframework.framework.type.AnnotatedTypeMirror;
 import org.checkerframework.javacutil.AnnotationUtils;
 
-import com.sun.source.tree.TypeCastTree;
 
-import read.qual.SafetyBottom;
 import read.qual.UnsafeByte;
 import read.qual.UnsafeChar;
 
