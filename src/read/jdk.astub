@@ -3,122 +3,122 @@ import read.qual.*;
 // InputStream stubs
 package java.io;
 public abstract class InputStream implements Closeable {
-    public abstract @UnsafeByte int read() throws IOException;
+    public abstract @UnsafeRead int read() throws IOException;
 }
 public class FilterInputStream extends InputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class SequenceInputStream extends InputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class PipedInputStream extends InputStream {
-    public @UnsafeByte synchronized int read()  throws IOException;
+    public @UnsafeRead synchronized int read()  throws IOException;
 }
 public class LineNumberInputStream extends FilterInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class FileInputStream extends InputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class PushbackInputStream extends FilterInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class ByteArrayInputStream extends InputStream {
-    public @UnsafeByte synchronized int read();
+    public @UnsafeRead synchronized int read();
 }
 public class StringBufferInputStream extends InputStream {
-    public @UnsafeByte synchronized int read();
+    public @UnsafeRead synchronized int read();
 }
 public class BufferedInputStream extends FilterInputStream {
-    public @UnsafeByte synchronized int read() throws IOException;
+    public @UnsafeRead synchronized int read() throws IOException;
 }
 public class ObjectInputStream extends InputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class ObjectInputStream extends InputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class ObjectInputStream extends InputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 
 
 package java.net;
 public class SocketInputStream extends FileInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 
 package javax.swing;
 public class ProgressMonitorInputStream extends FilterInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 
 package javax.sound.sampled;
 public class AudioInputStream extends InputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 
 package javax.imageio;
 public interface ImageInputStream extends DataInput, Closeable {
-    @UnsafeByte int read() throws IOException;
+    @UnsafeRead int read() throws IOException;
 }
 public class FileImageInputStream extends ImageInputStreamImpl {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class FileCacheImageInputStream extends ImageInputStreamImpl {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class MemoryCacheImageInputStream extends ImageInputStreamImpl {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 
 package org.omg.CORBA;
 public abstract class InputStream extends java.io.InputStream {
-    public @UnsafeByte int read() throws java.io.IOException;
+    public @UnsafeRead int read() throws java.io.IOException;
 }
 
 package java.util.zip;
 class CheckedInputStream extends FilterInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class DeflaterInputStream extends FilterInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 class InflaterInputStream extends FilterInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 
 package java.security;
 public class DigestInputStream extends FilterInputStream {
-    public @UnsafeByte int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 
 // Reader stubs
 package java.io;
 public abstract class Reader implements Readable, Closeable {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public abstract class FilterReader extends Reader {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class CharArrayReader extends Reader {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class LineNumberReader extends BufferedReader {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class StringReader extends Reader {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class InputStreamReader extends Reader {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class BufferedReader extends Reader {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }
 public class PipedReader extends Reader {
-    public synchronized @UnsafeChar int read()  throws IOException;
+    public synchronized @UnsafeRead int read()  throws IOException;
 }
 public class PushbackReader extends FilterReader {
-    public @UnsafeChar int read() throws IOException;
+    public @UnsafeRead int read() throws IOException;
 }

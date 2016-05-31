@@ -11,19 +11,15 @@ import org.checkerframework.framework.source.Result;
 import org.checkerframework.framework.type.AnnotatedTypeMirror;
 import org.checkerframework.javacutil.AnnotationUtils;
 
-
-import read.qual.UnsafeByte;
-import read.qual.UnsafeChar;
+import read.qual.UnsafeRead;
 
 public class ReadVisitor extends BaseTypeVisitor<ReadAnnotatedTypeFactory> {
 
-    protected AnnotationMirror UNSAFE_BYTE;
-    protected AnnotationMirror UNSAFE_CHAR;
+    protected AnnotationMirror UNSAFE_READ;
 
     public ReadVisitor(BaseTypeChecker checker) {
         super(checker);
-        UNSAFE_BYTE = AnnotationUtils.fromClass(elements, UnsafeByte.class);
-        UNSAFE_CHAR = AnnotationUtils.fromClass(elements, UnsafeChar.class);
+        UNSAFE_READ = AnnotationUtils.fromClass(elements, UnsafeRead.class);
     }
 
     @Override
@@ -36,15 +32,8 @@ public class ReadVisitor extends BaseTypeVisitor<ReadAnnotatedTypeFactory> {
         AnnotatedTypeMirror castType = atypeFactory.getAnnotatedType(node);
         AnnotatedTypeMirror exprType = atypeFactory.getAnnotatedType(node.getExpression());
 
-        if ((castType.getUnderlyingType().getKind() == TypeKind.BYTE && castType.hasAnnotation(UNSAFE_BYTE)) ||
-                (castType.getUnderlyingType().getKind() == TypeKind.CHAR && castType.hasAnnotation(UNSAFE_CHAR))) {
-//            checker.report(Result.warning("cast.unsafe", exprType, castType), node);
-            checker.report(Result.failure("cast.unsafe", exprType, castType), node);
-        }
-
-        if ((castType.getUnderlyingType().getKind() == TypeKind.BYTE && castType.hasAnnotation(UNSAFE_CHAR))||
-                (castType.getUnderlyingType().getKind() == TypeKind.CHAR && castType.hasAnnotation(UNSAFE_BYTE))) {
-//            checker.report(Result.warning("cast.unsafe", exprType, castType), node);
+        if (((castType.getUnderlyingType().getKind() == TypeKind.BYTE || castType.getUnderlyingType().getKind() == TypeKind.CHAR) &&
+                castType.hasAnnotation(UNSAFE_READ))) {
             checker.report(Result.failure("cast.unsafe", exprType, castType), node);
         }
 

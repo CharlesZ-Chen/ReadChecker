@@ -6,31 +6,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import read.qual.UnsafeChar;
-import read.qual.UnsafeByte;
+import read.qual.UnsafeRead;
 
 public class ErrorCasting {
  
     @SuppressWarnings("unused")
-    public void readCharMethod(@UnsafeChar int charBuff, @UnsafeByte int byteBuff, int unknownInt) {
-        int bar = unknownInt = charBuff;
-        int bar_2 = unknownInt = byteBuff;
+    public void readCharMethod(@UnsafeRead int unsafeReadBuff, int unknownInt) {
+        int bar = unknownInt = unsafeReadBuff;
+
         //:: error: (cast.unsafe)
         char unSafeChar_1 = (char) bar;
         //:: error: (cast.unsafe)
-        byte unsafeByte_1 = (byte) bar_2;
+        byte unsafeByte_1 = (byte) bar;
 
-        int foo = charBuff = charBuff;
+        int foo = unsafeReadBuff = unsafeReadBuff;
         //:: error: (cast.unsafe)
-        char unSafeChar_3 = (char) foo;
+        char unSafeChar_2 = (char) foo;
         //:: error: (cast.unsafe)
-        byte unknownSafetyByte_3 = (byte) foo;
-
-        int foo_2 = byteBuff = byteBuff;
-        //:: error: (cast.unsafe)
-        byte unknownSafetyByte_4 = (byte) foo_2;
-        //:: error: (cast.unsafe)
-        char unSafeChar_4 = (char) foo_2;
+        byte unsafeByte_2 = (byte) foo;
     }
 
 }

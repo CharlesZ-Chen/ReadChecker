@@ -1,44 +1,48 @@
 package read.typeHierarchy;
 
-import read.qual.SafeByte;
-import read.qual.SafeChar;
+import read.qual.SafeRead;
 import read.qual.SafetyBottom;
 import read.qual.UnknownSafety;
-import read.qual.UnsafeByte;
-import read.qual.UnsafeChar;
+import read.qual.UnknownSafetyLiterals;
+import read.qual.UnsafeRead;
 
 // javac-dev -processorpath ./bin:./build-deps/framework.jar -processor read.ReadChecker -cp ./bin tests/read-typeHierarchy/TypeHierarchy.java
-
+/**
+ * type hierarchy is:
+ *
+ * UnsafeRead :> UnknownSafety
+ * SafeRead :> UnsafeRead
+ * UnknownSafetyLiterals :> UnsafeRead
+ * SafetyBottom :> SafeRead
+ * SafetyBottom :> UnknownSafetyLiterals
+ *
+ * @author charleszhuochen
+ *
+ */
 public class TypeHierarchy {
 
-    @UnsafeByte int produceReadByte() {
-        return -1;
-    }
+    void testMethod(int i, @UnsafeRead int unsafeRead, @SafeRead int safeRead, @SafetyBottom int safetyBottom) {
 
-    void consumeReadByte(@UnsafeByte int inbuff) { }
+        //:: error: (assignment.type.incompatible)
+        unsafeRead = i; // ERROR: violate type rule UnsafeRead :> UnknownSafety
 
-    void testMethod(int i, @UnsafeByte int inbuff) {
+        //:: error: (assignment.type.incompatible)
+        safeRead = unsafeRead; // ERROR: violate type rule SafeRead :> UnsafeRead
 
-        //:: error: (argument.type.incompatible)
-        consumeReadByte(i); // ERROR
+        //:: error: (assignment.type.incompatible)
+        safetyBottom = safeRead; // ERROR: violate type rule SafetyBottom :> SafeRead
 
-        consumeReadByte(produceReadByte()); // OK
+        //:: error: (assignment.type.incompatible)
+        safetyBottom = 1; // ERROR: violate type rule SafetyBottom :> UnknownSafetyLiterals
 
-        long j = 1L; // 1L is is @UnkownSafetyLiterals
+        int a = unsafeRead; // OK: UnsafeRead :> UnknownSafety
 
-        consumeReadByte( (int) j); // OK
+        unsafeRead = safeRead; // OK: SafeRead :> UnsafeRead
 
-        int k = produceReadByte();
+        unsafeRead = -1; // OK: UnknownSafetyLiterals :> UnsafeRead
 
-        consumeReadByte(k); // OK
+        safeRead = safetyBottom; // OK: SafetyBottom :> UnknownSafetyLiterals
 
-        k = - 1; // -1 is @UnkownSafetyLiterals
-
-        consumeReadByte(k);
-
-        @UnknownSafety int p = 9;
-
-        k = p; // This is also Ok, why? Because Declaritive type is always top
     }
 
 }

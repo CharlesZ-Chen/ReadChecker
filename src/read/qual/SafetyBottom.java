@@ -7,7 +7,7 @@ import org.checkerframework.framework.qual.ImplicitFor;
 import org.checkerframework.framework.qual.LiteralKind;
 import org.checkerframework.framework.qual.SubtypeOf;
 
-@SubtypeOf({SafeByte.class, SafeChar.class})
+@SubtypeOf({UnknownSafetyLiterals.class, SafeRead.class})
 @ImplicitFor(literals = { LiteralKind.NULL })
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
 public @interface SafetyBottom {
