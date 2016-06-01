@@ -41,9 +41,18 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
         if (firstNode instanceof IntegerLiteralNode &&
                 ((IntegerLiteralNode) firstNode).getValue() == -1) {
 
-            if (!secondValue.getType().hasAnnotation(UNSAFE_READ)) {
-                return res; //this Equal To doesn't check a read byte or char, thus do nothing.
-            }
+            // This is a trade off for implementing the post-condition @EnsureSafeIf.
+            // If we refine a qualifier to @SafeRead only if the related value has @UnsafeRead,
+            // then a programmer has to write a @UnsafeRead annotation to the method's argument
+            // he/she wants to ensure about. The good part of this is we may only want
+            // the passing argument has type of @SafeRead, which is reasonable. However, the
+            // bad part of this is it needs explicit annotation from the programmer side.
+            // Because programmers don't like writing annotations (let's admit that we all don't like annotations:-<)
+            // Thus here I loosing the restriction, that is to refine all types to @SafeRead as long as
+            // it check against with -1.
+//            if (!secondValue.getType().hasAnnotation(UNSAFE_READ)) {
+//                return res; //this Equal To doesn't check a read byte or char, thus do nothing.
+//            }
 
             CFStore thenStore = res.getThenStore();
             CFStore elseStore = res.getElseStore();
