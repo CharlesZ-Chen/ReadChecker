@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class CS4Reader {
-    public void unsafeWayOfCasting() throws IOException {
+    public void compliantSolution() throws IOException {
         Reader in = new FileReader("afile");
         int inbuff;
         @SuppressWarnings("unused")
