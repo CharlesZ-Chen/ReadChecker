@@ -44,7 +44,7 @@ in `ReadChecer` clone, I've attached a `FooProject` as a demo of ReadChecker. Yo
   ```bash
   ../read-check.sh src/Foo.java
   ```
- 2. running Read Checker on FooProject by FooProject's build command
+ 2. running Read Checker on FooProject by FooProject's build command (needs configure `$JSR308` environment variable)
 
   e.g. In dir `FooProject/` :
 
