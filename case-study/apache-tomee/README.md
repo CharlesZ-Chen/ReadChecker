@@ -24,3 +24,25 @@ This script will download the current trunk version of `apache tomee`, insert ou
 Running `./tomee-SimpleJSonParser-bug.sh` will cause the shell terminal stuck in an infinite loop when junit running our test case. This is caused by the `cast before check` bug in line 50 of file `tomee/container/openejb-core/src/main/java/org/apache/openejb/util/SimpleJSonParser.java`.
 
 Our ReadChecker also detect other two similar bugs in SimpleParser.java (line 67, line 88).
+
+## Running Read Checker on `apache tomee`
+
+First download the trunk version of [apache tomee](https://github.com/apache/tomee).
+
+If you only want to see the `SimpleJSonParser` bug find by Read Checker, for the reason of saving time, you could running Read Checker only on `openejb-core` component of `apache tomee`:
+- In `tomee/container/openejb-core` run:
+  ```bash
+  $JSR308/ReadChecker/run-dljc.sh mvn -Pquick -Dsurefire.useFile=false -DdisableXmlReport=true -DuniqueVersion=false -ff -Dassemble -DskipTests -DfailIfNoTests=false install
+  ```  
+  The running result will start to print out after around 5 minutes.
+
+If you want to check the whole `apache tomee` project by Read Checker:
+
+- In the `apache tomee` clone, run `run-dljc.sh` with tomee's quick build command (for saving time):
+
+  ```bash
+  $JSR308/ReadChecker/run-dljc.sh mvn -Pquick -Dsurefire.useFile=false -DdisableXmlReport=true -DuniqueVersion=false -ff -Dassemble -DskipTests -DfailIfNoTests=false install
+  ```
+
+  The running result will start to print on the screen after around 15~20 minutes (tomee is a really big project...).
+
