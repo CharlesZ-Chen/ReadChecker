@@ -48,9 +48,9 @@ In your project, just running `run-dljc.sh` with the build cmd of your project:
 $JSR308/ReadChecker/run-dljc.sh <your build cmd, e.g. `ant build` or `mvn install`>
 ```
 
-Note: using do-like-javac needs `JSR308` environment variable.
+Note: using `do-like-javac` needs `JSR308` environment variable.
 
-Details of do-like-javac could be find [here](https://github.com/SRI-CSL/do-like-javac).
+Details of `do-like-javac` could be find [here](https://github.com/SRI-CSL/do-like-javac).
 
 ## Notes on useful materials
 - [CERT rule FIO08-J](https://www.securecoding.cert.org/confluence/display/java/FIO08-J.+Distinguish+between+characters+or+bytes+read+from+a+stream+and+-1)
