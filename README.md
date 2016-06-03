@@ -31,8 +31,31 @@ It is suggested to further configure `JSR308` environment variable for your conv
 
 This `JSR308` environment variable is required for using my version of [do-like-javac](https://github.com/CharlesZ-Chen/do-like-javac) to run Read Checker on a project with project's build command, and it is also allow running Read Checker with a conciser command.
 
+## How to running read checker check your source code
 
-## Running Read Checker on Java file(s)
+### Foo Project demo
+
+in `ReadChecer` clone, I've attached a `FooProject` as a demo of ReadChecker. You can run Read Checker on this foo project in two ways:
+
+ 1. running Read Checker directly on source files of FooProject
+
+  e.g. In dir `FooProject/` :
+
+  ```bash
+  ../read-check.sh src/Foo.java
+  ```
+ 2. running Read Checker on FooProject by FooProject's build command
+
+  e.g. In dir `FooProject/` :
+
+  ```bash
+  ant clean
+  ../run-dljc.sh ant
+  ```
+
+The subsections below introduce the details of each way of running Read Checker.
+
+### Running Read Checker on Java file(s)
 
 I have write a simple script `read-check.sh` to make this task easier. You could just passing java files to this script, and this script will check all the java files you passing through.
 
@@ -51,7 +74,7 @@ For the detailers, this script just a wrap-up of below command:
 ReadChecker/../checker-framework/checker/bin-devel/javac -processor read.ReadChecker -cp ReadChecker/bin:ReadChecker/build-deps <your java files>
 ```
 
-## Running Read Checker on a project by do-like-javac
+### Running Read Checker on a project by do-like-javac
 
 In your project, just running `run-dljc.sh` with the build cmd of your project:
 
