@@ -28,8 +28,29 @@ This `JSR308` environment variable is required for using my version of [do-like-
 
 ## Running Read Checker on a single Java file
 
+I have write a simple script to make this task easier. For checking a single Java file, just run:
 
+```bash
+$JSR308/ReadChecker/read-check.sh <your java file>
+```
 
+For the detailers, this script just a wrap-up of below command:
+
+```bash
+$JSR308/checker-framework/checker/bin-devel/javac -processor read.ReadChecker -cp $JSR308/ReadChecker/bin:$JSR308/ReadChecker/build-deps <your java file>
+```
+
+## Running Read Checker on a project by do-like-javac
+
+In your project, just running `run-dljc.sh` with the build cmd of your project:
+
+```bash
+$JSR308/ReadChecker/run-dljc.sh <your build cmd, e.g. `ant build` or `mvn install`>
+```
+
+Note: using do-like-javac needs `JSR308` environment variable.
+
+Details of do-like-javac could be find [here](https://github.com/SRI-CSL/do-like-javac).
 
 ## Notes on useful materials
 - [CERT rule FIO08-J](https://www.securecoding.cert.org/confluence/display/java/FIO08-J.+Distinguish+between+characters+or+bytes+read+from+a+stream+and+-1)
