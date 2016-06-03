@@ -21,9 +21,9 @@ This script will download the current trunk version of `apache tomee`, insert ou
 
 ## Result
 
-Running `./tomee-SimpleJSonParser-bug.sh` will cause the shell terminal stuck in an infinite loop when `junit` running our test case. This is caused by the `cast before check` bug in line 50 of file `tomee/container/openejb-core/src/main/java/org/apache/openejb/util/SimpleJSonParser.java`.
+Running `./tomee-SimpleJSonParser-bug.sh` will cause the shell terminal stuck in an infinite loop when `junit` running our test case. This is caused by the `cast before check` bug in [line 50](https://github.com/apache/tomee/blob/master/container/openejb-core/src/main/java/org/apache/openejb/util/SimpleJSonParser.java#L50) of file `tomee/container/openejb-core/src/main/java/org/apache/openejb/util/SimpleJSonParser.java`.
 
-Our ReadChecker also detect other two similar bugs in SimpleParser.java (line 67, line 88).
+Our ReadChecker also detect other two similar bugs in SimpleParser.java ([line 67](https://github.com/apache/tomee/blob/master/container/openejb-core/src/main/java/org/apache/openejb/util/SimpleJSonParser.java#L67), [line 88](https://github.com/apache/tomee/blob/master/container/openejb-core/src/main/java/org/apache/openejb/util/SimpleJSonParser.java#L88)).
 
 ## Running Read Checker on `apache tomee`
 
