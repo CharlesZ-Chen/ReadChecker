@@ -6,10 +6,17 @@
 # dljc override the javac classpath in its cmd, thus I have to add a little code
 # of joining the sys CLASSPATH to the --classpath in dljc's javac cmd.)
 
-ROOT=$(cd $(dirname "$0") && pwd)
-DLJC=$ROOT/../do-like-javac
+CUR_DIR=$(pwd)
+ROOT=$(cd $(dirname "$0")/.. && pwd)
+READ_CHECKER=$ROOT/ReadChecker
+DLJC=$ROOT/do-like-javac
 
-export CLASSPATH=$ROOT/bin:$ROOT/build-deps
+export CLASSPATH=$READ_CHECKER/bin:$READ_CHECKER/build-deps
+
+if [ ! -d $DLJC ] ; then
+    cd $ROOT
+    git clone https://github.com/CharlesZ-Chen/do-like-javac.git
+fi
 
 #parsing build command of the target program
 build_cmd=$1
@@ -19,5 +26,7 @@ do
     build_cmd="$build_cmd $1"
     shift
 done
+
+cd $CUR_DIR
 
 python $DLJC/dljc -t checker --checker read.ReadChecker -- $build_cmd
