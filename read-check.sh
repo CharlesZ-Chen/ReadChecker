@@ -8,4 +8,12 @@ READ_CHECKER=$ROOT/ReadChecker
 
 cd $WORKING_DIR
 
-$JAVAC -processor read.ReadChecker -cp $READ_CHECKER/bin:$READ_CHECKER/build-deps $1
+java_files=$1
+shift
+while [ $# -gt 0 ]
+do
+    java_files="$java_files $1"
+    shift
+done
+
+$JAVAC -processor read.ReadChecker -cp $READ_CHECKER/bin:$READ_CHECKER/build-deps $java_files
