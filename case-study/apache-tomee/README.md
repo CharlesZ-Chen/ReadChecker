@@ -31,6 +31,7 @@ First download the trunk version of [apache tomee](https://github.com/apache/tom
 
 If you only want to see the `SimpleJSonParser` bug find by Read Checker, for the reason of saving time, you could running Read Checker only on `openejb-core` component of `apache tomee`:
 - In `tomee/container/openejb-core` run:
+
   ```bash
   $JSR308/ReadChecker/run-dljc.sh mvn -Pquick -Dsurefire.useFile=false -DdisableXmlReport=true -DuniqueVersion=false -ff -Dassemble -DskipTests -DfailIfNoTests=false install
   ```  
