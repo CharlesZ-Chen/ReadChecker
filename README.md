@@ -32,18 +32,23 @@ It is suggested to further configure `JSR308` environment variable for your conv
 This `JSR308` environment variable is required for using my version of [do-like-javac](https://github.com/CharlesZ-Chen/do-like-javac) to run Read Checker on a project with project's build command, and it is also allow running Read Checker with a conciser command.
 
 
-## Running Read Checker on a single Java file
+## Running Read Checker on Java file(s)
 
-I have write a simple script to make this task easier. For checking a single Java file, just run:
+I have write a simple script to make this task easier. You could just passing java files to this script, and this script will check all the java files you passing through.
+
+e.g.
 
 ```bash
-$JSR308/ReadChecker/read-check.sh <your java file>
+$JSR308/ReadChecker/read-check.sh <your java files>
+$JSR308/ReadChecker/read-check.sh aSingleFile.java
+$JSR308/ReadChecker/read-check.sh **/*.java
+$JSR308/ReadChecker/read-check.sh FileA.java FileB.java ... FileN.java
 ```
 
 For the detailers, this script just a wrap-up of below command:
 
 ```bash
-$JSR308/checker-framework/checker/bin-devel/javac -processor read.ReadChecker -cp $JSR308/ReadChecker/bin:$JSR308/ReadChecker/build-deps <your java file>
+$JSR308/checker-framework/checker/bin-devel/javac -processor read.ReadChecker -cp $JSR308/ReadChecker/bin:$JSR308/ReadChecker/build-deps <your java files>
 ```
 
 ## Running Read Checker on a project by do-like-javac
