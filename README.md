@@ -34,7 +34,7 @@ This `JSR308` environment variable is required for using my version of [do-like-
 
 ## Running Read Checker on Java file(s)
 
-I have write a simple script to make this task easier. You could just passing java files to this script, and this script will check all the java files you passing through.
+I have write a simple script `read-check.sh` to make this task easier. You could just passing java files to this script, and this script will check all the java files you passing through.
 
 e.g.
 
