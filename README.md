@@ -13,6 +13,7 @@ I have a `setup.sh` to building these dependences and also the Read Checker. Thi
 
 - [ant](http://ant.apache.org/manual/install.html)
 - [mercurial](https://www.mercurial-scm.org/wiki/Download)
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## Build
 
