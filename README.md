@@ -35,7 +35,7 @@ This `JSR308` environment variable is required for using my version of [do-like-
 
 ### Foo Project demo
 
-in `ReadChecer` clone, I've attached a `FooProject` as a demo of ReadChecker. You can run Read Checker on this foo project in two ways:
+in `ReadChecker` clone, I've attached a `FooProject` as a demo of ReadChecker. You can run Read Checker on this foo project in two ways:
 
  1. running Read Checker directly on source files of FooProject
 
