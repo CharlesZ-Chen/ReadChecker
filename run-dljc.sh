@@ -15,7 +15,7 @@ export CLASSPATH=$READ_CHECKER/bin:$READ_CHECKER/build-deps
 
 if [ ! -d $DLJC ] ; then
     cd $ROOT
-    git clone https://github.com/CharlesZ-Chen/do-like-javac.git
+    git clone https://github.com/CharlesZ-Chen/do-like-javac.git --branch checker
 fi
 
 #parsing build command of the target program
