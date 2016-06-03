@@ -31,7 +31,7 @@ It is suggested to further configure `JSR308` environment variable for your conv
 
 This `JSR308` environment variable is required for using my version of [do-like-javac](https://github.com/CharlesZ-Chen/do-like-javac) to run Read Checker on a project with project's build command, and it is also allow running Read Checker with a conciser command.
 
-## How to running read checker check your source code
+## How to running Read Checker check your source code
 
 ### Foo Project demo
 
