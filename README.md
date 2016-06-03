@@ -23,7 +23,7 @@ It is suggested to further configure `JSR308` environment variable for your conv
   export JSR308=<the absolute path of your jsr308 dir in your machine>
   ```
 
-This `JSR308` environment variable is required for using my version of [do-like-javac](https://github.com/CharlesZ-Chen/do-like-javac) to run Read Checker on a project with its build command, and it is also allow running Read Checker with a more concise command.
+This `JSR308` environment variable is required for using my version of [do-like-javac](https://github.com/CharlesZ-Chen/do-like-javac) to run Read Checker on a project with project's build command, and it is also allow running Read Checker with a more concise command.
 
 
 ## Running Read Checker on a single Java file
