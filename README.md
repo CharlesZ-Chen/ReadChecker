@@ -9,7 +9,7 @@ This project is developed based on [Checker Framework](http://types.cs.washingto
 - jsr308-langtools
 - annotation-tools
 
-I have a `setup.sh` to building these dependences and also the Read Checker, this `setup.sh` needs following tools be ready in your machine before running it:
+I have a `setup.sh` to building these dependences and also the Read Checker. This `setup.sh` needs following tools be ready in your machine before running it:
 
 - [ant](http://ant.apache.org/manual/install.html)
 - [mercurial](https://www.mercurial-scm.org/wiki/Download)
