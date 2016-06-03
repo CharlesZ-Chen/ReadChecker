@@ -56,7 +56,7 @@ $JSR308/ReadChecker/run-dljc.sh <your build cmd, e.g. `ant build` or `mvn instal
 
 Note: 
   1. using `do-like-javac` needs `JSR308` environment variable.
-  2. running a Checker by `do-like-javac` on a project needs this project have to be a "clean" state. In other words, you should do a `clean` command in your project before runnning Read Checker on it.
+  2. running a Checker by `do-like-javac` on a project needs this project is in a "clean" state. In other words, you should do a `clean` command in your project before runnning Read Checker on it.
 
 Details of `do-like-javac` could be find [here](https://github.com/SRI-CSL/do-like-javac).
 
