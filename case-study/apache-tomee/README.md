@@ -27,7 +27,7 @@ Our ReadChecker also detect other two similar bugs in SimpleParser.java (line 67
 
 ## Running Read Checker on `apache tomee`
 
-First download the trunk version of [apache tomee](https://github.com/apache/tomee). (or if you already downloaded it by above demo script, do a `mvn clean` first in `tomee` directory.
+First download the trunk version of [apache tomee](https://github.com/apache/tomee). (or if you already downloaded it by above demo script, do a `mvn clean` first in `tomee` directory.)
 
 If you only want to see the `SimpleJSonParser` bug find by Read Checker, for the reason of saving time, you could running Read Checker only on `openejb-core` component of `apache tomee`:
 - In `tomee/container/openejb-core` run:
