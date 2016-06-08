@@ -14,8 +14,8 @@ public class ReadTest extends CheckerFrameworkTest {
 
     @Parameters
     public static String[] getTestDirs() {
-        return new String[]{"read-typeHierarchy", "post-condition", "binaryOpRefine", "NOC-examples",
-                "CS-examples", "Casting", "teamed-quiz", "WTFCodeSOD061102"};
+        return new String[]{"read-typeHierarchy", "post-condition", "binaryOpRefine", "noc-examples",
+                "cs-examples", "casting", "teamed-quiz", "wtfCodeSOD061102"};
     }
 
 
