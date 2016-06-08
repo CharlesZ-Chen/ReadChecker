@@ -159,7 +159,7 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
                 }
             }
 
-            // case: 0 < secondNode
+            // case: 0 < rightN
             // currently I don't process this part, because of two reasons:
             // 1. Doesn't find real code need this case
             // 2. although 0 < rightN would imply rightN is safe for casting,
