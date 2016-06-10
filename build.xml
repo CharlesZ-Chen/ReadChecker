@@ -6,6 +6,9 @@
     <property name="checker.bin" value="${basedir}/bin"/>
     <property name="checker.src" value="${basedir}/src"/>
     <property name="build.deps" value="${basedir}/build-deps"/>
+    <property name="javac.lib" value="${build.deps}/javac.jar"/>
+    <property name="framework.lib" value="${build.deps}/framework.jar"/>
+    <!-- <property name="annotation-file-utilities.lib" value="${build.deps}/annotation-file-utilities.jar"/> -->
     <!-- if using jdk.astub, un-comment below properties, and re-configure the right place of your jdk.astub-->
     <property name="jdk.astub" value="${checker.src}/read/jdk.astub"/>
     <property name="jdk.astub.bin.dir" value="${checker.bin}/read"/>
@@ -28,6 +31,7 @@
 
         <symlink link="${build.deps}/framework.jar" resource="${checker-framework}/framework/dist/framework.jar" overwrite="true"/>
         <symlink link="${build.deps}/javac.jar" resource="${jsr308-langtools}/dist/lib/javac.jar" overwrite="true"/>
+        <!-- <symlink link="${build.deps}/annotation-file-utilities.jar" resource="${annotation-file-utilities}/annotation-file-utilities.jar" overwrite="true"/> -->
 
         <!-- using jdk.astub specific, need to re-configure the right place of yoru jdk.astub.bin.dir-->
         <copy file="${jdk.astub}" todir="${jdk.astub.bin.dir}"/>
@@ -57,6 +61,10 @@
               classname="com.sun.tools.javac.Main">
             <jvmarg line="-Xbootclasspath/p:${javac.lib}"/>
             <arg value="-g"/>
+            <arg value="-source"/>
+            <arg value="7"/>
+            <arg value="-target"/>
+            <arg value="7"/>
             <!-- To not get a warning about bootstrap classpath -->
             <arg value="-Xlint:-options"/>
             <arg line="-sourcepath ${checker.src}"/>
@@ -103,7 +111,7 @@
               failonerror="true"
               classpath="${test.classpath}:${basedir}/bin"
               classname="com.sun.tools.javac.Main">
-            <!-- <jvmarg line="-Xbootclasspath/p:${javac.lib}"/> -->
+            <jvmarg line="-Xbootclasspath/p:${javac.lib}"/>
             <arg value="-g"/>
             <!-- Make sure we only have Java 7 source code and generate Java 7 bytecode. -->
             <arg value="-source"/>
@@ -143,7 +151,7 @@
             <!--Set JAVAC_JAR so the insert-annotations-to-source can use it-->
             <!-- <env key="JAVAC_JAR" value="${javac.lib}"/> -->
             <classpath path="${test.classpath}:${tests.build}:${basedir}/bin"/>
-            <!-- <jvmarg line="-Xbootclasspath/p:${javac.lib}"/> -->
+            <jvmarg line="-Xbootclasspath/p:${javac.lib}"/>
             <jvmarg line="-ea"/>
             <!-- <jvmarg line="${debugger.str}"/> -->
             <sysproperty key="use.hacks" value="${use.hacks.str}"/>
