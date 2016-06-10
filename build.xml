@@ -191,4 +191,8 @@
     </target>
     <!-- test target end -->
 
+    <!-- debugging -->
+    <target name="debug"> 
+        <echoproperties/>
+    </target>
 </project>
