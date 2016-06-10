@@ -4,15 +4,15 @@
 
 A type system that enforces [CERT-FIO08-J rule](https://www.securecoding.cert.org/confluence/display/java/FIO08-J.+Distinguish+between+characters+or+bytes+read+from+a+stream+and+-1) based on [Checker Framework](http://types.cs.washington.edu/checker-framework/)
 
-## Dependences
+## Dependencies
 
-This project is developed based on [Checker Framework](http://types.cs.washington.edu/checker-framework/), to use this checker, below dependences are required:
+This project is developed based on [Checker Framework](http://types.cs.washington.edu/checker-framework/). To use this checker, below dependencies are required:
 
 - checker framework
 - jsr308-langtools
 - annotation-tools
 
-I have a `setup.sh` to building these dependences and also the Read Checker. This `setup.sh` needs following tools be ready in your machine before running it:
+I have a `setup.sh` to build these dependencies and also the Read Checker. This `setup.sh` needs following tools to be ready in your machine before running it:
 
 - [ant](http://ant.apache.org/manual/install.html)
 - [mercurial](https://www.mercurial-scm.org/wiki/Download)
@@ -20,9 +20,9 @@ I have a `setup.sh` to building these dependences and also the Read Checker. Thi
 
 ## Build
 
-First, to have a better file structure, you may want to creat a root directory called `jsr308`.
+First, to have a better file structure, you may want to create a root directory called `jsr308`.
 
-In `jsr308`, clone this project. In the clone, run `./setup.sh`. This script will download and build all neccessary dependences, followed by building Read Checker and running test suites of Read Checker.
+In `jsr308`, clone this project. In the clone, run `./setup.sh`. This script will download and build all neccessary dependencies, followed by building Read Checker and running test suites of Read Checker.
 
 It is suggested to further configure `JSR308` environment variable for your convenience:
 
@@ -34,7 +34,7 @@ It is suggested to further configure `JSR308` environment variable for your conv
 
 This `JSR308` environment variable is required for using my version of [do-like-javac](https://github.com/CharlesZ-Chen/do-like-javac) to run Read Checker on a project with project's build command, and it also allows running Read Checker with a conciser command.
 
-## How to running Read Checker check your Java code
+## How to run Read Checker to check your Java code
 
 ### Foo Project demo
 
@@ -60,7 +60,7 @@ The subsections below introduce the details of each way of running Read Checker.
 
 ### Running Read Checker on Java file(s)
 
-I have write a simple script `read-check.sh` to make this task easier. You could just passing java files to this script, and this script will check all the java files you passing through.
+I have written a simple script `read-check.sh` to make this task easier. You could just passing java files to this script, and this script will check all the java files you passing through.
 
 e.g.
 
@@ -79,7 +79,7 @@ ReadChecker/../checker-framework/checker/bin-devel/javac -processor read.ReadChe
 
 ### Running Read Checker on a project by do-like-javac
 
-In your project, just running `run-dljc.sh` with the build cmd of your project:
+In your project, just run `run-dljc.sh` with the build cmd of your project:
 
 ```bash
 $JSR308/ReadChecker/run-dljc.sh <your build cmd, e.g. `ant build` or `mvn install`>
