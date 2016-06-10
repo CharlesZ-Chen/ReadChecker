@@ -11,7 +11,7 @@ ROOT=$(cd $(dirname "$0")/.. && pwd)
 READ_CHECKER=$ROOT/ReadChecker
 DLJC=$ROOT/do-like-javac
 
-export CLASSPATH=$READ_CHECKER/bin:$READ_CHECKER/build-deps
+export CLASSPATH=$READ_CHECKER/bin:$READ_CHECKER/lib
 
 if [ ! -d $DLJC ] ; then
     cd $ROOT

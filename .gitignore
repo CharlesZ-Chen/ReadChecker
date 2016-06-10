@@ -8,8 +8,8 @@ bin/
 
 # ant output
 tests/build
-tests/deps
-build-deps/
+tests/lib
+lib/
 
 # Analysis
 Analysis/

@@ -1,47 +1,57 @@
-<project name="ReadChecker" basedir="." default="build-checker">
-
+<!-- I follow the target naming convention of Apache Ant Style here: https://wiki.apache.org/ant/TheElementsOfAntStyle -->
+<!-- This Ant build xml serves for two purposes:
+        1. build & distribute Read Checker:
+            init dist
+        2. test Read Checker:
+            init-test test
+    The build.xml manages the internal dependences of Read Checker (i.e. test depends on Read Checker bin, etc.)
+    The external dependencies needed for building and testing Read Checker are described in file build.properties
+    -->
+<project name="ReadChecker" basedir="." default="dist">
+    <dirname property="read-checker.basedir" file="${ant.file.ReadChecker}"/>
+    <!-- load properties of external dependencies -->
     <loadproperties srcFile="build.properties"/>
 
     <!-- build properties -->
-    <property name="checker.bin" value="${basedir}/bin"/>
-    <property name="checker.src" value="${basedir}/src"/>
-    <property name="build.deps" value="${basedir}/build-deps"/>
-    <property name="javac.lib" value="${build.deps}/javac.jar"/>
-    <property name="framework.lib" value="${build.deps}/framework.jar"/>
-    <!-- <property name="annotation-file-utilities.lib" value="${build.deps}/annotation-file-utilities.jar"/> -->
+    <property name="checker.bin" value="${read-checker.basedir}/bin"/>
+    <property name="checker.src" value="${read-checker.basedir}/src"/>
+    <property name="build.lib" value="${read-checker.basedir}/lib"/>
+    <!-- <property name="checker.dist" value="${read-checker.basedir}/bin"/> -->
+
     <!-- if using jdk.astub, un-comment below properties, and re-configure the right place of your jdk.astub-->
     <property name="jdk.astub" value="${checker.src}/read/jdk.astub"/>
     <property name="jdk.astub.bin.dir" value="${checker.bin}/read"/>
 
     <!-- test properties -->
-    <property name="tests" value="${basedir}/tests" />
-    <property name="tests.src" value="${tests}/src" />
-    <property name="tests.deps" value="${tests}/deps" />
-    <property name="tests.build" value="${tests}/build"/>
-    <property name="build.reports" value="${tests.build}/reports"/>
-    <!-- <property name="javac.lib" value="${tests.deps}/javac.jar"/> -->
+    <property name="test" value="${read-checker.basedir}/tests" />
+    <property name="test.src" value="${test}/src" />
+    <property name="test.lib" value="${test}/lib" />
+    <property name="test.build" value="${test}/build"/>
+    <property name="test.build.reports" value="${test.build}/reports"/>
+
     <!-- Defaults, used if the Ant invocation does not set a value. -->
     <property name="halt.on.test.error" value="true" />
     <property name="halt.on.test.failure" value="true" />
 
     <!-- build targets start -->
-    <target name="prep-checker" description="create needs dirs, and prepare the dependences of this checker">
+    <target name="init"
+        description="link all necessary dependences into ${build.deps}">
         <mkdir dir="${checker.bin}"/>
-        <mkdir dir="${build.deps}"/>
+        <mkdir dir="${build.lib}"/>
 
-        <symlink link="${build.deps}/framework.jar" resource="${checker-framework}/framework/dist/framework.jar" overwrite="true"/>
-        <symlink link="${build.deps}/javac.jar" resource="${jsr308-langtools}/dist/lib/javac.jar" overwrite="true"/>
-        <!-- <symlink link="${build.deps}/annotation-file-utilities.jar" resource="${annotation-file-utilities}/annotation-file-utilities.jar" overwrite="true"/> -->
+        <symlink link="${build.lib}/framework.jar" resource="${framework.lib}" overwrite="true"/>
+        <symlink link="${build.lib}/javac.jar" resource="${javac.lib}" overwrite="true"/>
+        <!-- <symlink link="${build.deps}/annotation-file-utilities.jar" resource="${annotation-file-utilities.lib}" overwrite="true"/> -->
 
         <!-- using jdk.astub specific, need to re-configure the right place of yoru jdk.astub.bin.dir-->
         <copy file="${jdk.astub}" todir="${jdk.astub.bin.dir}"/>
     </target>
 
-    <target name="build-checker" depends="prep-checker"
-        description="link all necessary dependences into ${build.deps} and compile this checker.">
-        <pathconvert pathsep=":" property="build.classpath">
+    <target name="dist" depends="init"
+        description="compile this checker">
+        <pathconvert pathsep=":" property="build.lib.jars">
         <path>
-            <fileset dir="${build.deps}">
+            <fileset dir="${build.lib}">
                 <include name="*.jar"/>
             </fileset>
         </path>
@@ -57,7 +67,7 @@
 
         <java fork="true"
               failonerror="true"
-              classpath="${build.classpath}"
+              classpath="${build.lib.jars}"
               classname="com.sun.tools.javac.Main">
             <jvmarg line="-Xbootclasspath/p:${javac.lib}"/>
             <arg value="-g"/>
@@ -73,43 +83,48 @@
         </java>
     </target>
 
-    <target name="clean">
+    <target name="clean" depends="clean-build,clean-test" description="delete all generated files and directories">
+    </target>
+
+    <target name="clean-build"
+        description="delete all generated files and directories by dist target">
         <delete dir="${checker.bin}" quiet="true"/>
-        <delete dir="${build.deps}" quiet="true"/>
+        <delete dir="${build.lib}" quiet="true"/>
     </target>
     <!-- build targets end -->
 
     <!-- test target start -->
-    <target name="prep-tests" description="create needs dirs, and prepare the dependences of running tests">
-        <mkdir dir="${tests.build}"/>
-        <mkdir dir="${build.reports}"/>
-        <mkdir dir="${tests.deps}"/>
-        <symlink link="${tests.deps}/framework.jar" resource="${checker-framework}/framework/dist/framework.jar" overwrite="true"/>
-        <symlink link="${tests.deps}/javac.jar" resource="${jsr308-langtools}/dist/lib/javac.jar" overwrite="true"/>
-        <symlink link="${tests.deps}/hamcrest-core.jar" resource="${checker-framework}/framework/tests/hamcrest-core-1.3.jar" overwrite="true"/>
-        <symlink link="${tests.deps}/junit.jar" resource="${checker-framework}/framework/tests/junit-4.12.jar" overwrite="true"/>
+    <target name="init-test"
+        description="create needs dirs, and prepare the dependences of running tests">
+        <mkdir dir="${test.build}"/>
+        <mkdir dir="${test.build.reports}"/>
+        <mkdir dir="${test.lib}"/>
+        <symlink link="${test.lib}/framework.jar" resource="${framework.lib}" overwrite="true"/>
+        <symlink link="${test.lib}/javac.jar" resource="${javac.lib}" overwrite="true"/>
+        <symlink link="${test.lib}/hamcrest-core.jar" resource="${hamcrest.lib}" overwrite="true"/>
+        <symlink link="${test.lib}/junit.jar" resource="${junit.lib}" overwrite="true"/>
 
-        <pathconvert pathsep=" " property="src.tests">
+        <pathconvert pathsep=" " property="src.test">
             <path>
-                <fileset dir="${tests.src}">
+                <fileset dir="${test.src}">
                     <include name="**/*.java"/>
                 </fileset>
             </path>
         </pathconvert>
 
-        <pathconvert pathsep=":" property="test.classpath">
+        <pathconvert pathsep=":" property="test.lib.jars">
             <path>
-                <fileset dir="${tests.deps}">
+                <fileset dir="${test.lib}">
                     <include name="*.jar"/>
                 </fileset>
             </path>
         </pathconvert>
     </target>
 
-    <target name="build-tests" depends="prep-tests" description="Compile tests">
+    <target name="dist-test" depends="init-test" description="Compile tests">
         <java fork="true"
               failonerror="true"
-              classpath="${test.classpath}:${basedir}/bin"
+              classpath="${test.lib.jars}:${checker.bin}"
               classname="com.sun.tools.javac.Main">
             <jvmarg line="-Xbootclasspath/p:${javac.lib}"/>
             <arg value="-g"/>
@@ -120,13 +135,13 @@
             <arg value="7"/>
             <!-- To not get a warning about bootstrap classpath -->
             <arg value="-Xlint:-options"/>
-            <arg line="-sourcepath ${tests.src}"/>
-            <arg line="-d ${tests.build}"/>
-            <arg line="${src.tests}"/>
+            <arg line="-sourcepath ${test.src}"/>
+            <arg line="-d ${test.build}"/>
+            <arg line="${src.test}"/>
         </java>
     </target>
 
-    <target name="run-tests" depends="build-tests"
+    <target name="test" depends="dist-test"
             description="Run tests for this checker, WITHOUT building anything">
 
         <!-- set this on the command line for like -Dtest.filter="**/TargetedTest.java" to target specific tests-->
@@ -141,16 +156,16 @@
         </condition>
 
         <!-- Copied from -run-tests target -->
-        <mkdir dir="${build.reports}"/>
+        <mkdir dir="${test.build.reports}"/>
 
         <junit fork="true"
-               dir="${basedir}"
+               dir="${read-checker.basedir}"
                printsummary="false"
                haltonerror="${halt.on.test.error}"
                haltonfailure="${halt.on.test.failure}">
             <!--Set JAVAC_JAR so the insert-annotations-to-source can use it-->
             <!-- <env key="JAVAC_JAR" value="${javac.lib}"/> -->
-            <classpath path="${test.classpath}:${tests.build}:${basedir}/bin"/>
+            <classpath path="${test.lib.jars}:${test.build}:${checker.bin}"/>
             <jvmarg line="-Xbootclasspath/p:${javac.lib}"/>
             <jvmarg line="-ea"/>
             <!-- <jvmarg line="${debugger.str}"/> -->
@@ -161,12 +176,18 @@
             <formatter type="brief" usefile="false"/>
 
             <!-- <test name="ReadTest"/> -->
-            <batchtest todir="${build.reports}">
-                <fileset dir="${tests.src}">
+            <batchtest todir="${test.build.reports}">
+                <fileset dir="${test.src}">
                     <include name="${test.filter}"/>
                 </fileset>
             </batchtest>
         </junit>
+    </target>
+
+    <target name="clean-test"
+        description="delete all generated files and directories by test target">
+        <delete dir="${test.lib}" quiet="true"/>
+        <delete dir="${test.build}" quiet="true"/>
     </target>
     <!-- test target end -->
 

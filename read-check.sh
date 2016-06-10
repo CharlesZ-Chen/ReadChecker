@@ -16,4 +16,4 @@ do
     shift
 done
 
-$JAVAC -processor read.ReadChecker -cp $READ_CHECKER/bin:$READ_CHECKER/build-deps $java_files
+$JAVAC -processor read.ReadChecker -cp $READ_CHECKER/bin:$READ_CHECKER/lib $java_files

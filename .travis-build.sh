@@ -8,4 +8,4 @@ export SHELLOPTS
 
 . ./.travis-build-without-test.sh
 
-ant -f $TRAVIS_BUILD_DIR/build.xml run-tests
+ant -f $TRAVIS_BUILD_DIR/build.xml test

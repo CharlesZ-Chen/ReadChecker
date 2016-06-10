@@ -36,4 +36,4 @@ fi
 (cd $ROOT/plume-lib/ && make)
 
 #build this checker
-ant -f $TRAVIS_BUILD_DIR/build.xml clean build-checker
+ant -f $TRAVIS_BUILD_DIR/build.xml clean dist
