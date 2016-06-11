@@ -74,7 +74,7 @@ $JSR308/ReadChecker/read-check.sh FileA.java FileB.java ... FileN.java
 For the detailers, this script just a wrap-up of below command:
 
 ```bash
-ReadChecker/../checker-framework/checker/bin-devel/javac -processor read.ReadChecker -cp ReadChecker/bin:ReadChecker/build-deps <your java files>
+ReadChecker/../checker-framework/checker/bin-devel/javac -processor read.ReadChecker -cp ReadChecker/bin:ReadChecker/lib <your java files>
 ```
 
 ### Running Read Checker on a project by do-like-javac
