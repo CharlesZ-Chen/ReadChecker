@@ -18,3 +18,6 @@ dljc-out/
 
 # example project bin files
 FooProject/bin
+
+# case study output
+case-study/apache-tomee/tomee
