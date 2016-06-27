@@ -26,7 +26,7 @@ mvn -Pquick -Dsurefire.useFile=false -DdisableXmlReport=true -DuniqueVersion=fal
 
 cd $OPENEJB_CORE
 
-gtimeout 30 mvn -Dtest=**/ServiceClasspathReadCheckerTest.java test
+gtimeout 300 mvn -Dtest=**/ServiceClasspathReadCheckerTest.java test
 
 echo "---------------------------------------------------------------------------------------------"
 echo " R E P O R T"
