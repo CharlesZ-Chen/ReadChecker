@@ -13,6 +13,7 @@ import org.checkerframework.dataflow.cfg.node.GreaterThanOrEqualNode;
 import org.checkerframework.dataflow.cfg.node.IntegerLiteralNode;
 import org.checkerframework.dataflow.cfg.node.LessThanNode;
 import org.checkerframework.dataflow.cfg.node.Node;
+import org.checkerframework.framework.flow.CFAbstractAnalysis;
 import org.checkerframework.framework.flow.CFAbstractTransfer;
 import org.checkerframework.framework.flow.CFStore;
 import org.checkerframework.framework.flow.CFValue;
@@ -26,6 +27,15 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
     protected AnnotationMirror SAFE_READ;
 
     public ReadTransfer(ReadAnalysis analysis) {
+        super(analysis);
+        UNSAFE_READ = AnnotationUtils.fromClass(analysis.getTypeFactory()
+                .getElementUtils(), UnsafeRead.class);
+        SAFE_READ = AnnotationUtils.fromClass(analysis.getTypeFactory()
+                .getElementUtils(), SafeRead.class);
+    }
+
+    public ReadTransfer(CFAbstractAnalysis<CFValue, CFStore, ReadTransfer> analysis) {
+        // TODO Auto-generated constructor stub
         super(analysis);
         UNSAFE_READ = AnnotationUtils.fromClass(analysis.getTypeFactory()
                 .getElementUtils(), UnsafeRead.class);

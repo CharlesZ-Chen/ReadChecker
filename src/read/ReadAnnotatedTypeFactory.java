@@ -1,14 +1,12 @@
 package read;
 
-import java.util.List;
-
 import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.VariableElement;
 
 import com.sun.source.tree.BinaryTree;
 import com.sun.source.tree.UnaryTree;
 
 import org.checkerframework.common.basetype.BaseTypeChecker;
+import org.checkerframework.framework.flow.CFAbstractAnalysis;
 import org.checkerframework.framework.flow.CFStore;
 import org.checkerframework.framework.flow.CFValue;
 import org.checkerframework.framework.type.AnnotatedTypeFactory;
@@ -19,7 +17,6 @@ import org.checkerframework.framework.type.treeannotator.ListTreeAnnotator;
 import org.checkerframework.framework.type.treeannotator.PropagationTreeAnnotator;
 import org.checkerframework.framework.type.treeannotator.TreeAnnotator;
 import org.checkerframework.javacutil.AnnotationUtils;
-import org.checkerframework.javacutil.Pair;
 
 import read.qual.SafeRead;
 import read.qual.SafetyBottom;
@@ -42,10 +39,9 @@ public class ReadAnnotatedTypeFactory extends GenericAnnotatedTypeFactory<CFValu
     }
 
     @Override
-    protected ReadAnalysis createFlowAnalysis(List<Pair<VariableElement, CFValue>> fieldValues) {
-        return new ReadAnalysis(checker, this, fieldValues);
+    public ReadTransfer createFlowTransferFunction(CFAbstractAnalysis<CFValue, CFStore, ReadTransfer> analysis) {
+        return new ReadTransfer(analysis);
     }
-
     protected class ReadTreeAnnotator extends TreeAnnotator {
 
         public ReadTreeAnnotator(AnnotatedTypeFactory atypeFactory) {

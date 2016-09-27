@@ -26,4 +26,21 @@ public class ErrorCasting {
         byte unsafeByte_2 = (byte) foo;
     }
 
+    @SuppressWarnings("unused")
+    public void postPreIncrementDecrement(@UnsafeRead int inbuff, int unknownInt) {
+        //:: error: (cast.unsafe)
+        char unknownSafetyChar_1 = (char) (inbuff++); // postIncrement would return original value of inbuff, unsafe
+        char unknownSafetyChar_2 = (char) (++inbuff); // Should cast up to UnknownSafety, OK
+        //:: error: (cast.unsafe)
+        char unknownSafetyChar_3 = (char) (inbuff--); // postDecrement would return original value of inbuff, unsafe
+        char unknownSafetyChar_4 = (char) (--inbuff); // Should cast up to UnknownSafety, OK
+
+        //:: error: (cast.unsafe)
+        byte unknownSafetyByte_1 = (byte) (inbuff++); // postIncrement would return original value of inbuff, unsafe
+        byte unknownSafetyByte_2 = (byte) (++inbuff); // Should cast up to UnknownSafety, OK
+        //:: error: (cast.unsafe)
+        byte unknownSafetyByte_3 = (byte) (inbuff--); // postDecrement would return original value of inbuff, unsafe
+        byte unknownSafetyByte_4 = (byte) (--inbuff); // Should cast up to UnknownSafety, OK
+    }
+
 }
