@@ -26,12 +26,12 @@ mvn -Pquick -Dsurefire.useFile=false -DdisableXmlReport=true -DuniqueVersion=fal
 
 cd $OPENEJB_CORE
 
-timeout 300 mvn -Dtest=**/ServiceClasspathReadCheckerTest.java test
+timeout 30 mvn -Dtest=**/ServiceClasspathReadCheckerTest.java test
 
 echo "---------------------------------------------------------------------------------------------"
 echo " R E P O R T"
 echo "---------------------------------------------------------------------------------------------"
-echo "Above test will stuck in infinite loop forever, thus I terminate it after it runs 5 minutes.
+echo "Above test will stuck in infinite loop forever, thus I terminate it after it runs 30 seconds.
 The reason of this infinite loop is caused by the defect on line 53 in SimpleJSonParser.java:
 https://github.com/apache/tomee/blob/master/container/openejb-core/src/main/java/org/apache/openejb/util/SimpleJSonParser.java#L53
 In this file, Line 35 correctly reads a character from the input stream and line 36 comments that the integer comparison must precede the cast.
