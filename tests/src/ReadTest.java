@@ -1,12 +1,13 @@
 import java.io.File;
+import java.util.List;
 
-import org.checkerframework.framework.test.CheckerFrameworkPerFileTest;
+import org.checkerframework.framework.test.CheckerFrameworkPerDirectoryTest;
 import org.junit.runners.Parameterized.Parameters;
 
-public class ReadTest extends CheckerFrameworkPerFileTest {
+public class ReadTest extends CheckerFrameworkPerDirectoryTest {
 
-    public ReadTest(File testFile) {
-        super(testFile, 
+    public ReadTest(List<File> testFiles) {
+        super(testFiles,
                 read.ReadChecker.class,
                 "",
                 "-Anomsgtext");
@@ -17,6 +18,4 @@ public class ReadTest extends CheckerFrameworkPerFileTest {
         return new String[]{"read-typeHierarchy", "post-condition", "binaryOpRefine", "noc-examples",
                 "cs-examples", "casting", "teamed-quiz", "wtfCodeSOD061102"};
     }
-
-
 }
