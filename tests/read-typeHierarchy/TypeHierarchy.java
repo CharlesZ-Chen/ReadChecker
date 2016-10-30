@@ -3,7 +3,6 @@ package read.typeHierarchy;
 import read.qual.SafeRead;
 import read.qual.SafetyBottom;
 import read.qual.UnknownSafety;
-import read.qual.UnknownSafetyLiterals;
 import read.qual.UnsafeRead;
 
 // javac-dev -processorpath ./bin:./build-deps/framework.jar -processor read.ReadChecker -cp ./bin tests/read-typeHierarchy/TypeHierarchy.java
@@ -12,7 +11,6 @@ import read.qual.UnsafeRead;
  *
  * UnsafeRead <: UnknownSafety
  * SafeRead <: UnsafeRead
- * UnknownSafetyLiterals <: UnsafeRead
  * SafetyBottom <: SafeRead
  * SafetyBottom <: UnknownSafetyLiterals
  *
@@ -32,16 +30,11 @@ public class TypeHierarchy {
         //:: error: (assignment.type.incompatible)
         safetyBottom = safeRead; // ERROR: violate type rule SafetyBottom <: SafeRead
 
-        //:: error: (assignment.type.incompatible)
-        safetyBottom = 1; // ERROR: violate type rule SafetyBottom <: UnknownSafetyLiterals
-
         int a = unsafeRead; // OK: UnsafeRead <: UnknownSafety
 
         unsafeRead = safeRead; // OK: SafeRead <: UnsafeRead
 
-        unsafeRead = -1; // OK: UnknownSafetyLiterals <: UnsafeRead
-
-        safeRead = safetyBottom; // OK: SafetyBottom <: UnknownSafetyLiterals
+        safeRead = safetyBottom; // OK: SafetyBottom <: SafeRead
 
     }
 
