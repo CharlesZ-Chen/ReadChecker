@@ -4,7 +4,10 @@ script: ./.travis-build.sh
 
 sudo: false
 
+addons:
+  apt:
+    packages:
+      - ant-optional
+
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk7
