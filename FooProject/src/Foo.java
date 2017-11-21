@@ -9,7 +9,7 @@ public class Foo {
         InputStream in = new FileInputStream("afile");
         @SuppressWarnings("unused")
         byte data;
-        //:: error: (cast.unsafe)
+        // :: error: (unsafe.eof.comparision)
         while ((data = (byte) in.read()) != -1) {
             //...
         }
@@ -20,7 +20,7 @@ public class Foo {
         Reader in = new FileReader("afile");
         @SuppressWarnings("unused")
         char data;
-        //:: error: (cast.unsafe)
+        // :: error: (unsafe.eof.comparision)
         while ((data = (char) in.read()) != -1) {
             //...
         }
