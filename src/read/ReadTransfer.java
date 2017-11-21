@@ -17,7 +17,7 @@ import org.checkerframework.framework.flow.CFAbstractAnalysis;
 import org.checkerframework.framework.flow.CFAbstractTransfer;
 import org.checkerframework.framework.flow.CFStore;
 import org.checkerframework.framework.flow.CFValue;
-import org.checkerframework.javacutil.AnnotationUtils;
+import org.checkerframework.javacutil.AnnotationBuilder;
 
 import read.qual.UnsafeRead;
 import read.qual.SafeRead;
@@ -28,18 +28,18 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
 
     public ReadTransfer(ReadAnalysis analysis) {
         super(analysis);
-        UNSAFE_READ = AnnotationUtils.fromClass(analysis.getTypeFactory()
+        UNSAFE_READ = AnnotationBuilder.fromClass(analysis.getTypeFactory()
                 .getElementUtils(), UnsafeRead.class);
-        SAFE_READ = AnnotationUtils.fromClass(analysis.getTypeFactory()
+        SAFE_READ = AnnotationBuilder.fromClass(analysis.getTypeFactory()
                 .getElementUtils(), SafeRead.class);
     }
 
     public ReadTransfer(CFAbstractAnalysis<CFValue, CFStore, ReadTransfer> analysis) {
         // TODO Auto-generated constructor stub
         super(analysis);
-        UNSAFE_READ = AnnotationUtils.fromClass(analysis.getTypeFactory()
+        UNSAFE_READ = AnnotationBuilder.fromClass(analysis.getTypeFactory()
                 .getElementUtils(), UnsafeRead.class);
-        SAFE_READ = AnnotationUtils.fromClass(analysis.getTypeFactory()
+        SAFE_READ = AnnotationBuilder.fromClass(analysis.getTypeFactory()
                 .getElementUtils(), SafeRead.class);
     }
 
