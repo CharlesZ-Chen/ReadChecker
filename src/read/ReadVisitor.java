@@ -9,7 +9,7 @@ import org.checkerframework.common.basetype.BaseTypeChecker;
 import org.checkerframework.common.basetype.BaseTypeVisitor;
 import org.checkerframework.framework.source.Result;
 import org.checkerframework.framework.type.AnnotatedTypeMirror;
-import org.checkerframework.javacutil.AnnotationUtils;
+import org.checkerframework.javacutil.AnnotationBuilder;
 
 import read.qual.UnsafeRead;
 
@@ -19,7 +19,7 @@ public class ReadVisitor extends BaseTypeVisitor<ReadAnnotatedTypeFactory> {
 
     public ReadVisitor(BaseTypeChecker checker) {
         super(checker);
-        UNSAFE_READ = AnnotationUtils.fromClass(elements, UnsafeRead.class);
+        UNSAFE_READ = AnnotationBuilder.fromClass(elements, UnsafeRead.class);
     }
 
     @Override

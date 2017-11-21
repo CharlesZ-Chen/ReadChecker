@@ -19,7 +19,7 @@ public class BadParser {
     String output = "";
     int data;
     while ((data = i.read()) > 0) {
-      //:: error: (cast.unsafe)
+      // :: error: (cast.unsafe)
       output += (char) data;
     }
     return output;
@@ -30,7 +30,7 @@ public class BadParser {
     int data;
     while ((data = i.read()) > 0) {
       if (data < 0x80) {
-        //:: error: (cast.unsafe)
+        // :: error: (cast.unsafe)
         output += (char) data;
       }
     }

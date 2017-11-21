@@ -9,7 +9,7 @@ public class NOCE4Reader {
         Reader in = new FileReader("afile");
         @SuppressWarnings("unused")
         char data;
-        //:: error: (cast.unsafe)
+        // :: error: (cast.unsafe)
         while ((data = (char) in.read()) != -1) {
             //...
         }

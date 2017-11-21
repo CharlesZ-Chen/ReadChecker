@@ -16,7 +16,7 @@ import org.checkerframework.framework.type.treeannotator.ImplicitsTreeAnnotator;
 import org.checkerframework.framework.type.treeannotator.ListTreeAnnotator;
 import org.checkerframework.framework.type.treeannotator.PropagationTreeAnnotator;
 import org.checkerframework.framework.type.treeannotator.TreeAnnotator;
-import org.checkerframework.javacutil.AnnotationUtils;
+import org.checkerframework.javacutil.AnnotationBuilder;
 
 import read.qual.SafeRead;
 import read.qual.SafetyBottom;
@@ -32,10 +32,10 @@ public class ReadAnnotatedTypeFactory extends GenericAnnotatedTypeFactory<CFValu
     public ReadAnnotatedTypeFactory(BaseTypeChecker checker) {
         super(checker);
         this.postInit();
-        SAFETY_BOTTOM = AnnotationUtils.fromClass(elements, SafetyBottom.class);
-        UNSAFE_READ = AnnotationUtils.fromClass(elements, UnsafeRead.class);
-        SAFE_READ = AnnotationUtils.fromClass(elements, SafeRead.class);
-        UNKNOWN_SAFETY = AnnotationUtils.fromClass(elements, UnknownSafety.class);
+        SAFETY_BOTTOM = AnnotationBuilder.fromClass(elements, SafetyBottom.class);
+        UNSAFE_READ = AnnotationBuilder.fromClass(elements, UnsafeRead.class);
+        SAFE_READ = AnnotationBuilder.fromClass(elements, SafeRead.class);
+        UNKNOWN_SAFETY = AnnotationBuilder.fromClass(elements, UnknownSafety.class);
     }
 
     @Override
