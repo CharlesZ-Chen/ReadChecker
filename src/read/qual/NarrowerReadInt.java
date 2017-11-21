@@ -5,8 +5,8 @@ import java.lang.annotation.Target;
 
 import org.checkerframework.framework.qual.SubtypeOf;
 
-@SubtypeOf({UnsafeRead.class})
+@SubtypeOf({UnknownSafety.class})
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
-public @interface SafeRead {
+public @interface NarrowerReadInt {
 
 }

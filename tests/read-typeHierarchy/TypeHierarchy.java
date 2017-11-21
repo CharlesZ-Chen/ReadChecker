@@ -1,19 +1,18 @@
 package read.typeHierarchy;
 
-import read.qual.SafeRead;
+import read.qual.ReadInt;
 import read.qual.SafetyBottom;
 import read.qual.UnknownSafety;
 import read.qual.UnknownSafetyLiterals;
-import read.qual.UnsafeRead;
+import read.qual.NarrowerReadInt;
 
 // javac-dev -processorpath ./bin:./build-deps/framework.jar -processor read.ReadChecker -cp ./bin tests/read-typeHierarchy/TypeHierarchy.java
 /**
  * type hierarchy is:
  *
- * UnsafeRead <: UnknownSafety
- * SafeRead <: UnsafeRead
- * UnknownSafetyLiterals <: UnsafeRead
- * SafetyBottom <: SafeRead
+ * NarrowerReadInt <: UnknowSafety
+ * ReadInt <: NarrowerReadInt
+ * UnknownSafetyLiterals <: ReadInt
  * SafetyBottom <: UnknownSafetyLiterals
  *
  * @author charleszhuochen
@@ -21,28 +20,33 @@ import read.qual.UnsafeRead;
  */
 public class TypeHierarchy {
 
-    void testMethod(int i, @UnsafeRead int unsafeRead, @SafeRead int safeRead, @SafetyBottom int safetyBottom) {
+    void testMethod(int i, @ReadInt int readInt, @NarrowerReadInt byte narrowerReadInt,
+            @SafetyBottom int safetyBottom,  byte readData) {
+        int a = readInt; // OK: ReadInt <: UnknownSafety
+
+        a = narrowerReadInt; // OK: NarrowerReadInt <: UnknownSafety
+
+        a = -1; // OK: UnknownSafetyLiterals <: UnknownSafety
+
+        readData = (byte) readInt; // OK: ReadInt <: UnknownSafety, and lhs will be refined by dataflow to NarrowerReadInt
 
         // :: error: (assignment.type.incompatible)
-        unsafeRead = i; // ERROR: violate type rule UnsafeRead <: UnknownSafety
+        readInt = i; // ERROR: violate type rule ReadInt <: UnknownSafety
 
         // :: error: (assignment.type.incompatible)
-        safeRead = unsafeRead; // ERROR: violate type rule SafeRead <: UnsafeRead
+        readInt = narrowerReadInt; // ERROR: violate type rule ReadInt <: NarrowerReadInt
+
+        readInt = -1; // OK: UnknownSafetyLiterals <: ReadInt
+
+        narrowerReadInt = (byte) readInt; // OK: ReadInt <: NarrowerReadInt
 
         // :: error: (assignment.type.incompatible)
-        safetyBottom = safeRead; // ERROR: violate type rule SafetyBottom <: SafeRead
+        safetyBottom = readInt; //ERROR: violate type rule SafetyBottom <: ReadInt
+
+        // :: error: (assignment.type.incompatible)
+        safetyBottom = narrowerReadInt; // ERROR: violate type rule SafetyBottom <: NarrowerReadInt
 
         // :: error: (assignment.type.incompatible)
         safetyBottom = 1; // ERROR: violate type rule SafetyBottom <: UnknownSafetyLiterals
-
-        int a = unsafeRead; // OK: UnsafeRead <: UnknownSafety
-
-        unsafeRead = safeRead; // OK: SafeRead <: UnsafeRead
-
-        unsafeRead = -1; // OK: UnknownSafetyLiterals <: UnsafeRead
-
-        safeRead = safetyBottom; // OK: SafetyBottom <: UnknownSafetyLiterals
-
     }
-
 }

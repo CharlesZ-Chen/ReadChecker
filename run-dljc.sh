@@ -29,4 +29,22 @@ done
 
 cd $CUR_DIR
 
-python $DLJC/dljc -t checker --checker read.ReadChecker -- $build_cmd
+# debug_onlyCompile="--onlyCompileBytecodeBase true"
+debug_cmd="python $DLJC/dljc -t testminimizer --debuggedTool check --expectReturnCode 1  --checker org.checkerframework.checker.nullness.NullnessChecker --expectOutputRegex 'error: cannot find symbol' -- $build_cmd "
+
+infer_cmd="python $DLJC/dljc -t checker --checker read.ReadChecker -- $build_cmd "
+
+running_cmd=$infer_cmd
+
+echo "============ Important variables ============="
+echo "JSR308: $JSR308"
+echo "CLASSPATH: $CLASSPATH"
+echo "build cmd: $build_cmd"
+echo "running cmd: $running_cmd"
+echo "============================================="
+
+eval "$running_cmd"
+
+echo "---- Reminder: do not forget to clean up the project! ----"
+
+

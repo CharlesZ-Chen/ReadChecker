@@ -10,8 +10,8 @@ public class CS4Reader {
         int inbuff;
         @SuppressWarnings("unused")
         char data;
-        while ((inbuff = in.read()) != -1) {
-            data = (char) inbuff; // OK
+        while ((inbuff = in.read()) != -1) { // OK
+            data = (char) inbuff;
         }
         in.close();
     }

@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import read.qual.UnsafeRead;
+import read.qual.ReadInt;
 
 //@skip-test
 public class ErrorCasting {
- 
+
     @SuppressWarnings("unused")
     public void readCharMethod(@UnsafeRead int unsafeReadBuff, int unknownInt) {
         int bar = unknownInt = unsafeReadBuff;

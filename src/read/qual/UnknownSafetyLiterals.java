@@ -7,7 +7,7 @@ import org.checkerframework.framework.qual.ImplicitFor;
 import org.checkerframework.framework.qual.SubtypeOf;
 import org.checkerframework.framework.qual.LiteralKind;
 
-@SubtypeOf({UnsafeRead.class})
+@SubtypeOf({ReadInt.class})
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
 @ImplicitFor (
 literals = { LiteralKind.INT, LiteralKind.LONG }

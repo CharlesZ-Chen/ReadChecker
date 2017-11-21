@@ -10,8 +10,8 @@ public class CS4InputStream {
         int inbuff;
         @SuppressWarnings("unused")
         byte data;
-        while ((inbuff = in.read()) != -1) {
-            data = (byte) inbuff; // OK
+        while ((inbuff = in.read()) != -1) {  // OK
+            data = (byte) inbuff;
         }
         in.close();
     }
