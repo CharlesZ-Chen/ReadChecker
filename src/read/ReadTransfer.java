@@ -35,7 +35,6 @@ public class ReadTransfer extends CFAbstractTransfer<CFValue, CFStore, ReadTrans
     }
 
     public ReadTransfer(CFAbstractAnalysis<CFValue, CFStore, ReadTransfer> analysis) {
-        // TODO Auto-generated constructor stub
         super(analysis);
         UNSAFE_READ = AnnotationBuilder.fromClass(analysis.getTypeFactory()
                 .getElementUtils(), UnsafeRead.class);
