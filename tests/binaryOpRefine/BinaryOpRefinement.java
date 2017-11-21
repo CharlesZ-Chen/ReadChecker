@@ -17,7 +17,7 @@ public class BinaryOpRefinement {
             if (buff < 0) {
                 ;
             }
-            //:: error: (cast.unsafe)
+            // :: error: (cast.unsafe)
             cur = (char) buff;
         } while (true);
     }
@@ -30,7 +30,7 @@ public class BinaryOpRefinement {
         }
 
         while ((buff = in.read()) > 0) {
-            //:: error: (cast.unsafe)
+            // :: error: (cast.unsafe)
             cur = (char) buff; // this is because although the casting is safe,
                                // 0x00 byte or 0x0000 char is still missed
 
@@ -58,7 +58,7 @@ public class BinaryOpRefinement {
             if (buff == -1) {
                 ;
             }
-            //:: error: (cast.unsafe)
+            // :: error: (cast.unsafe)
             cur = (char) buff;
         } while (true);
     }

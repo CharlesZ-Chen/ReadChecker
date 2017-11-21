@@ -10,7 +10,7 @@ public class NOCE4InputStream {
         InputStream in = new FileInputStream("afile");
         @SuppressWarnings("unused")
         byte data;
-        //:: error: (cast.unsafe)
+        // :: error: (cast.unsafe)
         while ((data = (byte) in.read()) != -1) {
             //...
         }

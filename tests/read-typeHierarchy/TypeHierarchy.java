@@ -23,16 +23,16 @@ public class TypeHierarchy {
 
     void testMethod(int i, @UnsafeRead int unsafeRead, @SafeRead int safeRead, @SafetyBottom int safetyBottom) {
 
-        //:: error: (assignment.type.incompatible)
+        // :: error: (assignment.type.incompatible)
         unsafeRead = i; // ERROR: violate type rule UnsafeRead <: UnknownSafety
 
-        //:: error: (assignment.type.incompatible)
+        // :: error: (assignment.type.incompatible)
         safeRead = unsafeRead; // ERROR: violate type rule SafeRead <: UnsafeRead
 
-        //:: error: (assignment.type.incompatible)
+        // :: error: (assignment.type.incompatible)
         safetyBottom = safeRead; // ERROR: violate type rule SafetyBottom <: SafeRead
 
-        //:: error: (assignment.type.incompatible)
+        // :: error: (assignment.type.incompatible)
         safetyBottom = 1; // ERROR: violate type rule SafetyBottom <: UnknownSafetyLiterals
 
         int a = unsafeRead; // OK: UnsafeRead <: UnknownSafety
