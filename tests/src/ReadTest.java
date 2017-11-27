@@ -15,7 +15,8 @@ public class ReadTest extends CheckerFrameworkPerDirectoryTest {
 
     @Parameters
     public static String[] getTestDirs() {
-        return new String[]{"read-typeHierarchy", "post-condition", "binaryOpRefine", "customize-reader", "noc-examples",
-                "cs-examples", "casting", "teamed-quiz", "wtfCodeSOD061102"};
+        //, "post-condition"
+        return new String[]{"read-typeHierarchy", "binaryOpRefine", "customize-reader", "noc-examples",
+                "cs-examples", "casting", "teamed-quiz", "wtfCodeSOD061102", "false-positives", "forbid-assignments"};
     }
 }
