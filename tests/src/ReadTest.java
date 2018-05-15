@@ -15,7 +15,17 @@ public class ReadTest extends CheckerFrameworkPerDirectoryTest {
 
     @Parameters
     public static String[] getTestDirs() {
-        return new String[]{"read-typeHierarchy", "post-condition", "binaryOpRefine", "customize-reader", "noc-examples",
-                "cs-examples", "casting", "teamed-quiz", "wtfCodeSOD061102"};
+        return new String[]{
+                "read-typeHierarchy",
+                "binaryOpRefine",
+                "customize-reader",
+                "noc-examples",
+                "cs-examples",
+                "casting",
+                "teamed-quiz",
+                "wtfCodeSOD061102",
+                "false-positives", // Test on previous false positives found in projects. Read Checker should
+                                   // not issue any warnings on these code.
+                };
     }
 }

@@ -1,8 +1,13 @@
 package read;
 
+import java.util.Set;
+
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.type.TypeKind;
 
+import com.sun.source.tree.MethodInvocationTree;
+import com.sun.source.tree.ThrowTree;
+import com.sun.source.tree.Tree;
 import com.sun.source.tree.TypeCastTree;
 
 import org.checkerframework.common.basetype.BaseTypeChecker;
@@ -20,6 +25,27 @@ public class ReadVisitor extends BaseTypeVisitor<ReadAnnotatedTypeFactory> {
     public ReadVisitor(BaseTypeChecker checker) {
         super(checker);
         UNSAFE_READ = AnnotationBuilder.fromClass(elements, UnsafeRead.class);
+    }
+
+    @Override
+    public boolean validateType(Tree tree, AnnotatedTypeMirror type) {
+        return true;
+    }
+
+    @Override
+    protected void checkThrownExpression(ThrowTree node) {
+        //Do not check.
+    }
+
+    @Override
+    protected boolean skipReceiverSubtypeCheck(MethodInvocationTree node, AnnotatedTypeMirror methodDefinitionReceiver,
+            AnnotatedTypeMirror methodCallReceiver) {
+        return true;
+    }
+
+    @Override
+    protected Set<? extends AnnotationMirror> getExceptionParameterLowerBoundAnnotations() {
+        return atypeFactory.getQualifierHierarchy().getBottomAnnotations();
     }
 
     @Override

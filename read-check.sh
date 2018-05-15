@@ -16,4 +16,5 @@ do
     shift
 done
 
+# -Acfgviz=org.checkerframework.dataflow.cfg.DOTCFGVisualizer,verbose,outdir=dotfile
 $JAVAC -processor read.ReadChecker -cp $READ_CHECKER/bin:$READ_CHECKER/lib $java_files

@@ -22,6 +22,8 @@ public class BadParser {
       // :: error: (cast.unsafe)
       output += (char) data;
     }
+    // Return type is incompatible as output was refined to @UnsafeRead
+    // :: error: (return.type.incompatible)
     return output;
   }
   public String getContentWithoutUnicode() throws IOException {
@@ -34,6 +36,8 @@ public class BadParser {
         output += (char) data;
       }
     }
+    // Return type is incompatible as output was refined to @UnsafeRead
+    // :: error: (return.type.incompatible)
     return output;
   }
   public void saveContent(String content) throws IOException {

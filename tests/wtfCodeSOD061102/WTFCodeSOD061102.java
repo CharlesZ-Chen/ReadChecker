@@ -10,25 +10,25 @@ public class WTFCodeSOD061102 {
                 while (true) {
                     char _char;
                     _stringBuffer.append(
-                        // :: error: (cast.unsafe)
+                        // :: error: (cast.unsafe) :: error: (argument.type.incompatible)
                         _char = (char)_inputStream.read());
                     if (_char == -1) {
                         break;
                     } else if (_char == '\r') {
                         _stringBuffer.append(
-                            // :: error: (cast.unsafe)
+                             // :: error: (cast.unsafe) :: error: (argument.type.incompatible)
                             _char = (char)_inputStream.read());
                         if (_char == -1) {
                             break;
                         } else if (_char == '\n') {
                             _stringBuffer.append(
-                                // :: error: (cast.unsafe)
+                                // :: error: (cast.unsafe) :: error: (argument.type.incompatible)
                                 _char = (char)_inputStream.read());
                             if (_char == -1) {
                                 break;
                             } else if (_char == '\r') {
                                 _stringBuffer.append(
-                                      // :: error: (cast.unsafe)
+                                      // :: error: (cast.unsafe):: error: (argument.type.incompatible)
                                     _char = (char)_inputStream.read());
                                 if (_char == -1) {
                                     break;
